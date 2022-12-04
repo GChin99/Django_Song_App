@@ -8,7 +8,9 @@
 </head>
 <body>
     <h1>Make an Album</h1>
-    <form action="/create/album" method="post">
+    <form action="/create/album" method="post">  <!--We need to add this route to the urls.py file-->
+        <!-- Adding a CSRF token to our forms allows Django to add a hidden input field and value that helps our server recognize genuine requests. 
+            If you forget to add this, Django will kindly provide a clear error message if you attempt to submit a form without a token. -->
         {% csrf_token %}
         <label>Album Name: <input name="album_name" type="text"></label>
         <label>Album Year: <input name="year" type="number"></label>

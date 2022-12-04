@@ -20,3 +20,7 @@ urlpatterns = [
     # path('admin/', admin.site.urls),  #this line we can comment out or just delete
     path('', include('songApp.urls'))
 ]
+
+# The urlpatterns is simply a variable that holds a list of urls that this project recognizes. Notice there are 2 arguments being passed to the url function:
+# 1. a raw string representing a route pattern (in our example: '')
+# 2. what to do if the pattern matches (in our example: include('app_name.urls')).  The second argument, include('app_name.urls') will resolve the rest of the route. 
