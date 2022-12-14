@@ -3,6 +3,7 @@
 
 
 from django.shortcuts import render, HttpResponse, redirect  # add redirect to import statement for Response Types
+from .models import Album, Song
 
 
 # Returns a string onto the page
@@ -11,14 +12,32 @@ def index(request):  #funtions now need the word request as the parameter
 
 # Returns an template
 def main_page(request):  #new route (step 2)
-    return render(request, "main_page.html")
+    # displaying the infomration for the database 
+    context = {
+        "all_the_albums": Album.objects.all() #this is the sqlite query
+    }
+    return render(request, "main_page.html", context)
 
 
 # Redirects to another page
 def create_album(request):
     if request.method =="POST":
         print(request.POST)
+        new_album = Album.objects.create(album_name=request.POST['album_name'], year=request.POST['year'])
     return redirect('/main_page')
+
+def song_form(request):
+    # displaying the infomration for the database 
+    context = {
+        "all_the_albums": Album.objects.all() #this is the sqlite query
+    }
+    return render(request, "song_form.html", context)
+
+def create_song(request):
+    if request.method == "POST":
+        print(request.POST)
+        new_song = Song.objects.create(song_name=request.POST['song_name'], album=Album.objects.get(id=request.POST['album']))
+        return redirect('/main_page')
 
 
 

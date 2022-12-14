@@ -12,6 +12,8 @@ urlpatterns = [
     path('', views.index),
     path('main_page', views.main_page),
     path('create/album', views.create_album),
+    path('song_form', views.song_form),
+    path('create/song', views.create_song),
 ]
 
 

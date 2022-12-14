@@ -7,19 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Make an Album</h1>
-    <form action="/create/album" method="post">  <!--We need to add this route to the urls.py file-->
+    <h1>Make an Song </h1>
+    <form action="/create/song" method="post">  <!--We need to add this route to the urls.py file-->
         <!-- Adding a CSRF token to our forms allows Django to add a hidden input field and value that helps our server recognize genuine requests. 
             If you forget to add this, Django will kindly provide a clear error message if you attempt to submit a form without a token. -->
         {% csrf_token %}
-        <label>Album Name: <input name="album_name" type="text"></label>
-        <label>Album Year: <input name="year" type="number"></label>
-        <input type="submit" value="Create Album">
+        <label>Song Name: <input name="song_name" type="text"></label>
+        <select name="album">
+            {% for album in all_the_albums %}
+                <option value="{{album.id}}">{{album.album_name}} - {{album.year}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Create Song">
     </form>
-    <h2>All the Albums</h2>
-    {% for album in all_the_albums %}
-        <p>{{album.album_name}} - {{album.year}}</p>
-    {% endfor %}
-    <a href="/song_form ">Make a Song</a>
 </body>
 </html>
