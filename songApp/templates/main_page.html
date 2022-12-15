@@ -19,6 +19,13 @@
     <h2>All the Albums</h2>
     {% for album in all_the_albums %}
         <p>{{album.album_name}} - {{album.year}}</p>
+        <ul>
+            <!-- album.all_songs.all is how we get to the list of dictionaries.  Without the .all at the end Django thinks its a relationship -->
+            <!-- all_songs comes from the model file -->
+            {% for one_song in album.all_songs.all %}
+                <li>{{one_song.song_name}}</li>
+            {% endfor %}
+        </ul>
     {% endfor %}
     <a href="/song_form ">Make a Song</a>
 </body>
